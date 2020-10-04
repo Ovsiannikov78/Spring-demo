@@ -1,3 +1,4 @@
+/*
 package de.ovsiannikov.springdemo;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,3 +22,4 @@ public class KickboxingCoach implements Coach {
         return fortuneService.getFortune();
     }
 }
+*/
