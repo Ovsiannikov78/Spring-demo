@@ -1,3 +1,4 @@
+/*
 package de.ovsiannikov.springdemo;
 
 import org.springframework.stereotype.Component;
@@ -20,3 +21,4 @@ public class RandomFortuneService implements FortuneService {
         return data[index];
     }
 }
+*/

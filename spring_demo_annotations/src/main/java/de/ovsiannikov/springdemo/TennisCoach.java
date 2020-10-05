@@ -3,7 +3,6 @@ package de.ovsiannikov.springdemo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
@@ -28,7 +27,6 @@ public class TennisCoach implements Coach {
     public void doMyCleanupStuff() {
         System.out.println("======= TennisCoach: inside of doMyCleanupStuff ======");
     }
-
 
     public String getDailyWorkout() {
         return "Practice your backhand volley";

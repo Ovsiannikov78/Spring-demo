@@ -15,13 +15,6 @@ public class AnnotationDemoApp {
         // call method to get the daily fortune
         System.out.println(tennisCoach.getDailyFortune());
 
-        /*Coach kickboxingCoach = context.getBean("kickboxingCoach", Coach.class);
-
-        System.out.println(kickboxingCoach.getDailyWorkout());
-
-        System.out.println(kickboxingCoach.getDailyFortune());*/
-
-
         // close the context
         context.close();
     }

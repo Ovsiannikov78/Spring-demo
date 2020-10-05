@@ -1,3 +1,4 @@
+/*
 package de.ovsiannikov.springdemo;
 
 import org.springframework.stereotype.Component;
@@ -9,3 +10,4 @@ public class HappyFortuneService implements FortuneService {
         return "Today is your lucky day!";
     }
 }
+*/

@@ -1,7 +1,6 @@
 package de.ovsiannikov.springdemo;
 
 import org.springframework.stereotype.Component;
-
 import javax.annotation.PostConstruct;
 import java.io.*;
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ import java.util.stream.Collectors;
 public class FileFortuneService implements FortuneService {
 
     File file = new File("src/main/resources/fortune-data.txt");
-    List<String> fortunes = new ArrayList<String>();
+    List<String> fortunes = new ArrayList<>();
 
     private Random myRandom = new Random();
 
@@ -36,6 +35,5 @@ public class FileFortuneService implements FortuneService {
         // pick a random string from the array
         int index = myRandom.nextInt(fortunes.size());
         return fortunes.get(index);
-
     }
 }
