@@ -6,7 +6,7 @@
 
 <body>
 
-<form action="processFormVersionTwo" method="GET">
+<form action="/hello/processFormVersionThree" method="GET">
 
     <label>
         <input type="text" name="studentName"
