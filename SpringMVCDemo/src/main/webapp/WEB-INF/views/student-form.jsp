@@ -30,7 +30,17 @@
     <form:select path="country">
         <form:options items="${student.countryOptions}"/>
 
+        <%--<form:options items="${theCountryOptions}"/>   &lt;%&ndash; Update the JSP page, student-form.jsp,
+                                                        to use the new model attribute for the drop-down list:
+                                                        theCountryOptions &ndash;%&gt;--%>
+
     </form:select>
+
+    <br><br>
+
+    Favorite Language:
+
+    <form:radiobuttons path="favoriteLanguage" items="${student.favoriteLanguageOptions}"/>
 
     <br><br>
 
