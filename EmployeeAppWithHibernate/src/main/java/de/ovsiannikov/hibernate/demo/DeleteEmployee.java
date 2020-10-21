@@ -21,6 +21,7 @@ public class DeleteEmployee {
 
             session.createQuery("delete from Employee e where e.id > 11 ").executeUpdate();
 
+
             session.getTransaction().commit();
             System.out.println("\nDone !!!");
 

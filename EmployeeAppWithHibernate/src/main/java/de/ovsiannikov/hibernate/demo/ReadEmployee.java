@@ -6,7 +6,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 
@@ -16,8 +19,12 @@ public class ReadEmployee {
         Session session = factory.openSession();
 
         try {
+            String theDateOfBirthStr = "31/12/1998";
+
+            LocalDate theDateOfBirth = DateUtils.parseDate(theDateOfBirthStr);
+
             System.out.println("Creating new Employee objects");
-            Employee newEmployee = new Employee("Viktor", "Kirilov", "Amazon");
+            Employee newEmployee = new Employee("Viktor", "Kirilov", theDateOfBirth, "Amazon");
 
             session.beginTransaction();
 
@@ -38,6 +45,8 @@ public class ReadEmployee {
             session.getTransaction().commit();
             System.out.println("\nDone !!!");
 
+        } catch (ParseException e) {
+            e.printStackTrace();
         } finally {
             factory.close();
         }
