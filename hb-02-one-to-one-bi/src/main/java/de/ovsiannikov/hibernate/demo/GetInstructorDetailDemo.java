@@ -25,7 +25,7 @@ public class GetInstructorDetailDemo {
             session.beginTransaction();
 
             // get the instructor  detail object
-            InstructorDetail tempInstructorDetail = session.get(InstructorDetail.class, 1);
+            InstructorDetail tempInstructorDetail = session.get(InstructorDetail.class, 134);
             System.out.println("tempInstructorDetail: " + tempInstructorDetail);
 
             // print the associated instructor
@@ -36,7 +36,12 @@ public class GetInstructorDetailDemo {
 
             System.out.println("Done!");
 
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
+            // handle connection leak issue
+            session.close();
+
             factory.close();
         }
     }
