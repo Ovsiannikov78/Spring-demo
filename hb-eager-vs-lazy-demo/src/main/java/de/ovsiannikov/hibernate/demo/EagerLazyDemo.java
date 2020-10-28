@@ -29,17 +29,22 @@ public class EagerLazyDemo {
             // get the instructor from db
             int theId = 1;
             Instructor tempInstructor = session.get(Instructor.class, theId);
+
             System.out.println("luv2code : Instructor: " + tempInstructor);
+
+            // Option 1: call getter method while session is open.
+            // The courses are loaded  to the memory !!! But we can get them only on demand as lazy data !!!
+            System.out.println("luv2code : Courses: " + tempInstructor.getCourses());
 
             // commit transaction
             session.getTransaction().commit();
 
-            // since course are lazy loaded ... this should fail
             // close the session
             session.close();
 
-            // get courses for the instructor
-            System.out.println("luv2code : Courses: " + tempInstructor.getCourses());
+            System.out.printf("\nluv2code : The session is now closed!\n");
+            // get courses for the instructor from the memory !!!
+            System.out.println("\nluv2code : Courses: " + tempInstructor.getCourses());
 
             System.out.println("Done!");
 
