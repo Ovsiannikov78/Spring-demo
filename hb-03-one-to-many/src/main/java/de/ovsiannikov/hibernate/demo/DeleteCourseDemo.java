@@ -27,7 +27,8 @@ public class DeleteCourseDemo {
             session.beginTransaction();
 
             // get a course
-            int theId = 11;
+            Hibernate_Advanced_Mappings-OneToMany
+            int theId = 10;
             Course tempCourse = session.get(Course.class, theId);
 
             // delete course

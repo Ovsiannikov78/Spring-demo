@@ -1,6 +1,8 @@
 package de.ovsiannikov.hibernate.demo.entity;
 
+Hibernate_Advanced_Mappings-OneToMany
 import javax.annotation.Generated;
+
 import javax.persistence.*;
 
 @Entity
