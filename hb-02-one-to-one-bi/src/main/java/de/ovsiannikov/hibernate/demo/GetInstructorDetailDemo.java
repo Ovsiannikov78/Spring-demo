@@ -1,6 +1,5 @@
 package de.ovsiannikov.hibernate.demo;
 
-import de.ovsiannikov.hibernate.demo.entity.Course;
 import de.ovsiannikov.hibernate.demo.entity.Instructor;
 import de.ovsiannikov.hibernate.demo.entity.InstructorDetail;
 import org.hibernate.Session;
@@ -8,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
-public class DeleteCourseDemo {
+public class GetInstructorDetailDemo {
     public static void main(String[] args) {
 
         // create session factory
@@ -16,7 +15,6 @@ public class DeleteCourseDemo {
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Instructor.class)
                 .addAnnotatedClass(InstructorDetail.class)
-                .addAnnotatedClass(Course.class)
                 .buildSessionFactory();
 
         // create session
@@ -26,22 +24,24 @@ public class DeleteCourseDemo {
             // start a transaction
             session.beginTransaction();
 
-            // get a course
-            Hibernate_Advanced_Mappings-OneToMany
-            int theId = 10;
-            Course tempCourse = session.get(Course.class, theId);
+            // get the instructor  detail object
+            InstructorDetail tempInstructorDetail = session.get(InstructorDetail.class, 134);
+            System.out.println("tempInstructorDetail: " + tempInstructorDetail);
 
-            // delete course
-            System.out.println("Deleting course: " + tempCourse);
-            session.delete(tempCourse);
+            // print the associated instructor
+            System.out.println("the associated instructor: " + tempInstructorDetail.getInstructor());
 
             // commit transaction
             session.getTransaction().commit();
+
             System.out.println("Done!");
 
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
-            // add clean up code
+            // handle connection leak issue
             session.close();
+
             factory.close();
         }
     }

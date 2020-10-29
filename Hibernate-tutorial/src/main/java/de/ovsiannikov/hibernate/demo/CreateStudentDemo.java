@@ -1,47 +1,41 @@
 package de.ovsiannikov.hibernate.demo;
 
-import de.ovsiannikov.hibernate.demo.entity.Course;
-import de.ovsiannikov.hibernate.demo.entity.Instructor;
-import de.ovsiannikov.hibernate.demo.entity.InstructorDetail;
+import de.ovsiannikov.hibernate.demo.entity.Student;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
-public class DeleteCourseDemo {
+public class CreateStudentDemo {
     public static void main(String[] args) {
 
         // create session factory
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Instructor.class)
-                .addAnnotatedClass(InstructorDetail.class)
-                .addAnnotatedClass(Course.class)
+                .addAnnotatedClass(Student.class)
                 .buildSessionFactory();
 
         // create session
         Session session = factory.getCurrentSession();
 
         try {
+            // create a student object
+            System.out.println("Creating new student object...");
+            Student tempStudent = new Student("John", "Jackson", "j.jackson@google.com");
+
             // start a transaction
             session.beginTransaction();
 
-            // get a course
-            Hibernate_Advanced_Mappings-OneToMany
-            int theId = 10;
-            Course tempCourse = session.get(Course.class, theId);
-
-            // delete course
-            System.out.println("Deleting course: " + tempCourse);
-            session.delete(tempCourse);
+            // create the student object
+            System.out.println("Saving the student...");
+            session.save(tempStudent);
 
             // commit transaction
             session.getTransaction().commit();
+
             System.out.println("Done!");
 
         } finally {
-            // add clean up code
-            session.close();
             factory.close();
         }
     }

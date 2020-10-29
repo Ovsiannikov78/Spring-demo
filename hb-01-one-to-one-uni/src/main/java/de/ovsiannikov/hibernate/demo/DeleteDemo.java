@@ -1,6 +1,5 @@
 package de.ovsiannikov.hibernate.demo;
 
-import de.ovsiannikov.hibernate.demo.entity.Course;
 import de.ovsiannikov.hibernate.demo.entity.Instructor;
 import de.ovsiannikov.hibernate.demo.entity.InstructorDetail;
 import org.hibernate.Session;
@@ -8,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 
-public class DeleteCourseDemo {
+public class DeleteDemo {
     public static void main(String[] args) {
 
         // create session factory
@@ -16,7 +15,6 @@ public class DeleteCourseDemo {
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Instructor.class)
                 .addAnnotatedClass(InstructorDetail.class)
-                .addAnnotatedClass(Course.class)
                 .buildSessionFactory();
 
         // create session
@@ -26,22 +24,25 @@ public class DeleteCourseDemo {
             // start a transaction
             session.beginTransaction();
 
-            // get a course
-            Hibernate_Advanced_Mappings-OneToMany
-            int theId = 10;
-            Course tempCourse = session.get(Course.class, theId);
+            // get instructor by primary key/id
+            Instructor tempInstructor = session.get(Instructor.class, 2);
+            System.out.println("Found instructor: " + tempInstructor);
 
-            // delete course
-            System.out.println("Deleting course: " + tempCourse);
-            session.delete(tempCourse);
+            // delete the instructor
+            if (tempInstructor != null) {
+                System.out.println("Deleting: " + tempInstructor);
+
+                // NOTE: will ALSO delete associated "details" object
+                //because of CascadeType:ALL
+                session.delete(tempInstructor);
+            }
 
             // commit transaction
             session.getTransaction().commit();
+
             System.out.println("Done!");
 
         } finally {
-            // add clean up code
-            session.close();
             factory.close();
         }
     }
