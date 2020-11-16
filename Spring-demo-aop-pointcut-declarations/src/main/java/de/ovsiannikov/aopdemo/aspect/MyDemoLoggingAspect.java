@@ -9,10 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyDemoLoggingAspect {
 
-    // this is where we add all of our related advices for logging
-
-    // let's start with an @Before advice
-
     @Pointcut("execution(* de.ovsiannikov.aopdemo.dao.*.*(..))")
     private void forDaoPackage() {
     }
@@ -21,5 +17,11 @@ public class MyDemoLoggingAspect {
     public void beforeAddAccountAdvice() {
 
         System.out.println("\n======>>> Executing @Before advice on all methods in a package");
+    }
+
+    @Before("forDaoPackage()")
+    public void performApiAnalytics() {
+
+        System.out.println("\n======>>> Performing API analytics");
     }
 }
