@@ -12,6 +12,6 @@ public class MyApiAnalyticsAspect {
     @Before("de.ovsiannikov.aopdemo.aspect.AopExpressions.forDaoPackageNoGetterSetter()")
     public void performApiAnalytics() {
 
-        System.out.println("\n======>>> Performing API analytics excluding getters and setters <<<========= ");
+        System.out.println("\n======>>> Performing API analytics excluding getters and setters <<<======== ");
     }
 }
