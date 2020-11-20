@@ -3,7 +3,6 @@ package de.ovsiannikov.aopdemo.dao;
 import de.ovsiannikov.aopdemo.Account;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,7 +13,12 @@ public class AccountDAO {
     private String serviceCode;
 
     // add a new method: findAccount()
-    public List<Account> findAccount() {
+    public List<Account> findAccount(boolean tripWire) {
+
+        // for academic purpose ... simulate an exception
+        if (tripWire) {
+            throw new RuntimeException("Oops !!! Something wrong !!!");
+        }
 
         // create sample accounts
         Account temp1 = new Account("Jack", "Silver");
