@@ -2,10 +2,7 @@ package de.ovsiannikov.aopdemo.aspect;
 
 import de.ovsiannikov.aopdemo.Account;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -16,6 +13,15 @@ import java.util.List;
 @Component
 @Order(2)
 public class MyDemoLoggingAspect {
+
+    @After("execution(* de.ovsiannikov.aopdemo.dao.AccountDAO.findAccount(..))")
+    public void afterFinallyFindAccountAdvice(JoinPoint theJoinPoint) {
+
+        // print out which method we are advising on
+        String method = theJoinPoint.getSignature().toShortString();
+        System.out.println("\n=========>>> Executing @After (finally) on method: " + method);
+
+    }
 
     @AfterThrowing(pointcut = "execution(* de.ovsiannikov.aopdemo.dao.AccountDAO.findAccount(..))",
             throwing = "theExc")
