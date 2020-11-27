@@ -29,7 +29,7 @@
 
 <p>
     <a href="${pageContext.request.contextPath}/leaders">LeaderShip Meeting</a>
-    (Only fro Manager peeps)
+    (Only for Manager peeps)
 
 </p>
 
