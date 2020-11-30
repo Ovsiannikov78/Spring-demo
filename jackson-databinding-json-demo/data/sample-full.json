@@ -10,5 +10,11 @@
 		"zip": "12084",
 		"country": "Germany"
 	},
-	"languages" : ["Java", "C#", "Python", "Javascript"]
+	"languages": [
+		"Java",
+		"C#",
+		"Python",
+		"Javascript"
+	],
+	"company": "Techno Inc"
 }

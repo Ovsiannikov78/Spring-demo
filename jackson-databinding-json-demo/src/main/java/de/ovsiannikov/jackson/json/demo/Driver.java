@@ -27,7 +27,6 @@ public class Driver {
 
             System.out.println("Street = " + tempAddress.getStreet());
             System.out.println("City = " + tempAddress.getCity());
-            System.out.println("State = " + tempAddress.getState());
             System.out.println("Zip = " + tempAddress.getZip());
             System.out.println("Country = " + tempAddress.getCountry());
 
