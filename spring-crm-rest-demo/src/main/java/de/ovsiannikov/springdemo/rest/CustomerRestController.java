@@ -33,8 +33,8 @@ public class CustomerRestController {
         }
         return theCustomer;
     }
-    // add mapping for POST /customers - add new customer
 
+    // add mapping for POST /customers - add new customer
     @PostMapping("/customers")
     public Customer addCustomer(@RequestBody Customer theCustomer) {
 
@@ -42,9 +42,15 @@ public class CustomerRestController {
         // this is force a save of new item ... instead of update
 
         theCustomer.setId(0);
+        customerService.saveCustomer(theCustomer);
+        return theCustomer;
+    }
+
+    // add mapping for PUT /customers - update existing customer
+    @PutMapping("/customers")
+    public Customer updateCustomer(@RequestBody Customer theCustomer) {
 
         customerService.saveCustomer(theCustomer);
-
         return theCustomer;
     }
 }
