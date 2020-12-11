@@ -22,11 +22,12 @@ public class CustomerServiceRestClientImpl implements CustomerService {
     private Logger logger = Logger.getLogger(getClass().getName());
 
     @Autowired
-    public CustomerServiceRestClientImpl(RestTemplate theRestTemplate, @Value("${crm.rest.url}") String theUrl) {
+    public CustomerServiceRestClientImpl(RestTemplate theRestTemplate,
+                                         @Value("${crm.rest.url}") String theUrl) {
         restTemplate = theRestTemplate;
         crmRestUrl = theUrl;
 
-        logger.info("Loaded property: crm.rest.url=" + crmRestUrl);
+        logger.info("Loaded property:  crm.rest.url=" + crmRestUrl);
     }
 
     @Override
@@ -35,14 +36,16 @@ public class CustomerServiceRestClientImpl implements CustomerService {
         logger.info("in getCustomers(): Calling REST API " + crmRestUrl);
 
         // make REST call
-        ResponseEntity<List<Customer>> responseEntity = restTemplate.exchange(crmRestUrl, HttpMethod.GET, null,
-                new ParameterizedTypeReference<List<Customer>>() {
-                });
+        ResponseEntity<List<Customer>> responseEntity =
+                restTemplate.exchange(crmRestUrl, HttpMethod.GET, null,
+                        new ParameterizedTypeReference<List<Customer>>() {
+                        });
 
         // get the list of customers from response
         List<Customer> customers = responseEntity.getBody();
 
-        logger.info("in getCustomers(): customers " + customers);
+        logger.info("in getCustomers(): customers" + customers);
+
         return customers;
     }
 
@@ -52,9 +55,11 @@ public class CustomerServiceRestClientImpl implements CustomerService {
         logger.info("in getCustomer(): Calling REST API " + crmRestUrl);
 
         // make REST call
-        Customer theCustomer = restTemplate.getForObject(crmRestUrl + "/" + theId, Customer.class);
+        Customer theCustomer =
+                restTemplate.getForObject(crmRestUrl + "/" + theId,
+                        Customer.class);
 
-        logger.info("in getCustomer(): theCustomer=" + theCustomer);
+        logger.info("in saveCustomer(): theCustomer=" + theCustomer);
 
         return theCustomer;
     }
@@ -70,6 +75,7 @@ public class CustomerServiceRestClientImpl implements CustomerService {
         if (employeeId == 0) {
             // add employee
             restTemplate.postForEntity(crmRestUrl, theCustomer, String.class);
+
         } else {
             // update employee
             restTemplate.put(crmRestUrl, theCustomer);
@@ -86,6 +92,6 @@ public class CustomerServiceRestClientImpl implements CustomerService {
         // make REST call
         restTemplate.delete(crmRestUrl + "/" + theId);
 
-        logger.info("in deleteCustomer(): deleted customer theId= " + theId);
+        logger.info("in deleteCustomer(): deleted customer theId=" + theId);
     }
 }
