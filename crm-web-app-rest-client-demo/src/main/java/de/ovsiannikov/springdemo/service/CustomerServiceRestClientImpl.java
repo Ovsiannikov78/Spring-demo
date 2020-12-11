@@ -76,16 +76,16 @@ public class CustomerServiceRestClientImpl implements CustomerService {
         }
 
         logger.info("in saveCustomer(): success");
-
     }
 
     @Override
     public void deleteCustomer(int theId) {
 
-    }
+        logger.info("in deleteCustomer(): Calling REST API " + crmRestUrl);
 
-    @Override
-    public List<Customer> searchCustomers(String theSearchName) {
-        return null;
+        // make REST call
+        restTemplate.delete(crmRestUrl + "/" + theId);
+
+        logger.info("in deleteCustomer(): deleted customer theId= " + theId);
     }
 }

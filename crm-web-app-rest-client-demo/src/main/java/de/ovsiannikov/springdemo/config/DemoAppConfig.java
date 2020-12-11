@@ -41,7 +41,7 @@ public class DemoAppConfig implements WebMvcConfigurer {
 	}
 
 	// add resource handler for loading css, images, etc
-	@Override
+	/*@Override*/
 	public void addResourcesHandlers(ResourceHandlerRegistry registry) {
 		registry
 				.addResourceHandler("/resources/**")
