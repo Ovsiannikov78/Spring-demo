@@ -62,8 +62,22 @@ public class CustomerServiceRestClientImpl implements CustomerService {
     @Override
     public void saveCustomer(Customer theCustomer) {
 
-    }
+        logger.info("in saveCustomer(): Calling REST API " + crmRestUrl);
 
+        int employeeId = theCustomer.getId();
+
+        // make REST call
+        if (employeeId == 0) {
+            // add employee
+            restTemplate.postForEntity(crmRestUrl, theCustomer, String.class);
+        } else {
+            // update employee
+            restTemplate.put(crmRestUrl, theCustomer);
+        }
+
+        logger.info("in saveCustomer(): success");
+
+    }
 
     @Override
     public void deleteCustomer(int theId) {
