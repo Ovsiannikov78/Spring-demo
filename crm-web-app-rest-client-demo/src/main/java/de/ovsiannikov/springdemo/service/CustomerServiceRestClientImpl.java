@@ -2,6 +2,9 @@ package de.ovsiannikov.springdemo.service;
 
 import de.ovsiannikov.springdemo.entity.Customer;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -24,7 +27,19 @@ public class CustomerServiceRestClientImpl implements CustomerService {
 
     @Override
     public List<Customer> getCustomers() {
-        return null;
+
+        logger.info("in getCustomers(): Calling REST API " + crmRestUrl);
+
+        // make REST call
+        ResponseEntity<List<Customer>> responseEntity = restTemplate.exchange(crmRestUrl, HttpMethod.GET, null,
+                new ParameterizedTypeReference<List<Customer>>() {
+                });
+
+        // get the list of customers from response
+        List<Customer> customers = responseEntity.getBody();
+
+        logger.info("in getCustomers(): customers " + customers);
+        return customers;
     }
 
     @Override
