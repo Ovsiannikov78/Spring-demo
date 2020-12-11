@@ -1,15 +1,18 @@
 package de.ovsiannikov.springdemo.service;
 
 import de.ovsiannikov.springdemo.entity.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.logging.Logger;
 
+@Service
 public class CustomerServiceRestClientImpl implements CustomerService {
 
     private RestTemplate restTemplate;
@@ -18,6 +21,7 @@ public class CustomerServiceRestClientImpl implements CustomerService {
 
     private Logger logger = Logger.getLogger(getClass().getName());
 
+    @Autowired
     public CustomerServiceRestClientImpl(RestTemplate theRestTemplate, @Value("${crm.rest.url}") String theUrl) {
         restTemplate = theRestTemplate;
         crmRestUrl = theUrl;
@@ -43,14 +47,23 @@ public class CustomerServiceRestClientImpl implements CustomerService {
     }
 
     @Override
+    public Customer getCustomer(int theId) {
+
+        logger.info("in getCustomer(): Calling REST API " + crmRestUrl);
+
+        // make REST call
+        Customer theCustomer = restTemplate.getForObject(crmRestUrl + "/" + theId, Customer.class);
+
+        logger.info("in getCustomer(): theCustomer=" + theCustomer);
+
+        return theCustomer;
+    }
+
+    @Override
     public void saveCustomer(Customer theCustomer) {
 
     }
 
-    @Override
-    public Customer getCustomer(int theId) {
-        return null;
-    }
 
     @Override
     public void deleteCustomer(int theId) {
