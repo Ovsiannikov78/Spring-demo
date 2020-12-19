@@ -1,6 +1,10 @@
 package de.ovsiannikov.springboot.cruddemo.entity;
-
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "employee")
@@ -22,9 +26,11 @@ public class Employee {
     @Column(name = "email")
     private String email;
 
-    // define constructor
+
+    // define constructors
 
     public Employee() {
+
     }
 
     public Employee(String firstName, String lastName, String email) {
@@ -67,8 +73,7 @@ public class Employee {
         this.email = email;
     }
 
-
-    // define toString
+    // define tostring
 
     @Override
     public String toString() {
