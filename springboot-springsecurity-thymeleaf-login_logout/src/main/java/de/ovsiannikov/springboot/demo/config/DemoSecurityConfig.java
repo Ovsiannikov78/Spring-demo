@@ -1,7 +1,6 @@
 package de.ovsiannikov.springboot.demo.config;
 
 import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
@@ -46,13 +45,5 @@ public class DemoSecurityConfig extends WebSecurityConfigurerAdapter {
 				.logout().permitAll()
 				.and()
 				.exceptionHandling().accessDeniedPage("/access-denied");
-
 	}
-
 }
-
-
-
-
-
-

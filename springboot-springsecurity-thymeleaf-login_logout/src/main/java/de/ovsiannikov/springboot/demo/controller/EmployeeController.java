@@ -62,7 +62,6 @@ public class EmployeeController {
         return "/employees/employee-form";
     }
 
-
     @PostMapping("/save")
     public String saveEmployee(@ModelAttribute("employee") Employee theEmployee) {
 
@@ -72,7 +71,6 @@ public class EmployeeController {
         // use a redirect to prevent duplicate submissions
         return "redirect:/employees/list";
     }
-
 
     @GetMapping("/delete")
     public String delete(@RequestParam("employeeId") int theId) {
@@ -97,25 +95,5 @@ public class EmployeeController {
 
         // send to /employees/list
         return "/employees/list-employees";
-
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

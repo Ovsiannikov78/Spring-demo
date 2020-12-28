@@ -2,7 +2,6 @@ package de.ovsiannikov.springboot.demo.service;
 
 import java.util.List;
 import java.util.Optional;
-
 import de.ovsiannikov.springboot.demo.dao.EmployeeRepository;
 import de.ovsiannikov.springboot.demo.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 			// we didn't find the employee
 			throw new RuntimeException("Did not find employee id - " + theId);
 		}
-
 		return theEmployee;
 	}
 
@@ -59,14 +57,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 		} else {
 			results = findAll();
 		}
-
 		return results;
 	}
-
 }
-
-
-
-
-
-
